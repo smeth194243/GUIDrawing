@@ -4,7 +4,7 @@ public class DrawingController
 {
 	public DrawingController()
 	{
-		new ColorFrame(this);
+		new DrawingFrame(this);
 	}
 	public void start()
 	{
