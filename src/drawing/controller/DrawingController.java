@@ -1,5 +1,7 @@
 package drawing.controller;
 
+import drawing.view.DrawingFrame;
+
 public class DrawingController 
 {
 	public DrawingController()

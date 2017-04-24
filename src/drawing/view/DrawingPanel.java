@@ -1,77 +1,65 @@
 package drawing.view;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
 
 import drawing.controller.DrawingController;
 
 public class DrawingPanel extends JPanel
 {
-	private Color current;
-	private Color next;
-	private int colorNumb;
-	private int currentNumb;
-	private int deltaRed;
-	private int deltaGreen;
-	private int deltaBlue;
-	private double leftOverRed;
-	private double leftOverGreen;
-	private double leftOverBlue;
-	private ShapePanel shapes;
-	private JButton button;
-	private SpringLayout layout;
 	private DrawingController baseController;
-	private double LR;
-	private double LG;
-	private double LB;
+	private SpringLayout baseLayout;
+	private JButton buildButton;
+	private ShapePanel recPanel;
+	
 	
 	public DrawingPanel(DrawingController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		shapes = new ShapePanel(baseController);
-		button = new JButton("button");
-		layout = new SpringLayout();
-		current = Color.white;
-		currentNumb = 0;
-		colorNumb = 120;
-		NextColor();
-	}
-	
-	private void setup();
-	private void setupLayout()
-	private void setupListeners()
-
-
-	private void setup()
-	{
-		this.setLayout(layout);
-		this.add(button);
-		this.add(shapes);
-	}
-	
-	private void setupLayout()
-	{
+		baseLayout = new SpringLayout();
+		buildButton = new JButton("Click to draw");
+		recPanel = new ShapePanel(baseController);
 		
+		
+		
+		setupPanel();
+		setupLayout();
+		setupListeners();
+	}
+	
+	private void setupPanel()
+	{
+		this.setLayout(baseLayout);
+		this.setSize(new Dimension(1000, 1000));
+		this.add(buildButton);
+		this.add(recPanel);
+	}
+	
+	private void setupLayout()
+	{
+		baseLayout.putConstraint(SpringLayout.NORTH, buildButton, 450, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, buildButton, 30, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, recPanel, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, recPanel, -688, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, recPanel, 937, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, recPanel, 0, SpringLayout.EAST, this);
 	}
 	
 	private void setupListeners()
 	{
-		button.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
+		buildButton.addActionListener(new ActionListener()
 			{
-				shapes.addRectangles();
+			public void actionPerformed(ActionEvent clicked)
+				{
+					recPanel.addRectangles();
+				}
 			}
+		);
 			
-		});
 	}
-
-	}
+}
