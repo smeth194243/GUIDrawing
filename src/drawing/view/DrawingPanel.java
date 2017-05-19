@@ -15,6 +15,7 @@ public class DrawingPanel extends JPanel
 	private SpringLayout baseLayout;
 	private JButton buildButton;
 	private ShapePanel recPanel;
+	private GraphPanel graphPanel;
 	
 	
 	public DrawingPanel(DrawingController baseController)
@@ -24,12 +25,24 @@ public class DrawingPanel extends JPanel
 		baseLayout = new SpringLayout();
 		buildButton = new JButton("Click to draw");
 		recPanel = new ShapePanel(baseController);
+		graphPanel = new GraphPanel();
 		
 		
 		
 		setupPanel();
 		setupLayout();
 		setupListeners();
+	}
+	
+	private int[] setupArray()
+	{
+		int length = (int)(Math.random() * 10) + 3;
+		int [] randomArray = new int [length];
+		for(int index =0; index < length; index ++)
+		{
+			randomArray[index] = (int)(Math.random()* 50) + 3;
+		}
+		return randomArray;
 	}
 	
 	private void setupPanel()
