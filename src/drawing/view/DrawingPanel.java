@@ -25,7 +25,7 @@ public class DrawingPanel extends JPanel
 		baseLayout = new SpringLayout();
 		buildButton = new JButton("Click to draw");
 		recPanel = new ShapePanel(baseController);
-		graphPanel = new GraphPanel();
+		graphPanel = new GraphPanel(setupArray());
 		
 		
 		
@@ -51,6 +51,7 @@ public class DrawingPanel extends JPanel
 		this.setSize(new Dimension(1000, 1000));
 		this.add(buildButton);
 		this.add(recPanel);
+		this.add(graphPanel);
 	}
 	
 	private void setupLayout()
